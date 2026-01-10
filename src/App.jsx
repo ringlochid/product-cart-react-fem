@@ -1,5 +1,5 @@
 import './App.css'
-import { useState, useContext, createContext, useEffect, memo, useCallback } from 'react'
+import { useState, useContext, createContext, useEffect, memo, useCallback, Fragment } from 'react'
 import getProductList from './api/productAPI';
 
 
@@ -71,6 +71,11 @@ function useCart() {
 }
 
 function AddToCartButton({ setActivated, isActivated, quantity, onQuantityChange }) {
+  useEffect(() => {
+    if (quantity === 0) {
+      setActivated(false);
+    }
+  }, [quantity, setActivated]);
   const handleClickMainButton = () => {
     setActivated(true);
     onQuantityChange(1);
@@ -162,9 +167,33 @@ function ProductContainer() {
   )
 }
 
-function CartListItem() {}
+function CartListItem({ product }) {
+  const {handleQuantityChange} = useCart();
+  if (!product.quantity) {
+    throw new Error('Product quantity is required');
+  }
+  return (
+    <div className='cart-list-item'>
+      <div className='info'>
+        <h1>{product.name}</h1>
+        <div className='detail'>
+          <p className='quantity'>{product.quantity}x</p>
+          <p className='unit-price'>@ ${product.price.toFixed(2)}</p>
+          <p className='total-price'>${(product.quantity * product.price).toFixed(2)}</p>
+        </div>
+      </div> 
+      <button className='remove-item-btn' onClick={() => handleQuantityChange(product.name, 0)}>
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
+          <path d="M10 1.25C5.125 1.25 1.25 5.125 1.25 10C1.25 14.875 5.125 18.75 10 18.75C14.875 18.75 18.75 14.875 18.75 10C18.75 5.125 14.875 1.25 10 1.25ZM10 17.5C5.875 17.5 2.5 14.125 2.5 10C2.5 5.875 5.875 2.5 10 2.5C14.125 2.5 17.5 5.875 17.5 10C17.5 14.125 14.125 17.5 10 17.5Z" fill="#AD8A85"/>
+          <path d="M13.375 14.375L10 11L6.625 14.375L5.625 13.375L9 10L5.625 6.625L6.625 5.625L10 9L13.375 5.625L14.375 6.625L11 10L14.375 13.375L13.375 14.375Z" fill="#AD8A85"/>
+        </svg>
+      </button>
+    </div>
+  )
+}
 
-function CartList({ quantity }){
+function CartList({ quantity, cartItems }){
+  const selectedItems = cartItems.filter(item => item.quantity > 0);
   if (quantity === 0) {
     return (
     <div className='cart-empty-placeholder'>
@@ -175,18 +204,44 @@ function CartList({ quantity }){
   }
   return (
     <div className='cart-list'>
-      
+      {selectedItems.map((item, idx, array) => (
+        <Fragment key={item.name}>
+          <CartListItem product={item}/>
+          {idx < array.length - 1 && <div className='cart-separator'/>}
+        </Fragment>
+      ))}
     </div>
+  )
+}
+
+function CartOrder({total}){
+  return (
+    <div className='cart-total-order'>
+      <h1>Order Total</h1>
+      <p>${total.toFixed(2)}</p>
+    </div>
+  )
+}
+
+function CartConfirmButton(){
+  return (
+    <button className='confirm-btn'>
+      <span>Confirm Order</span>
+    </button>
   )
 }
 
 function Cart(){
   const {cartItems} = useCart();
   const quantity = cartItems.reduce((total, item) => total + item.quantity, 0);
+  const total = cartItems.reduce((total, item) => total + item.quantity * item.price, 0);
   return (
     <div className='cart'>
       <h1>your cart ({quantity})</h1>
-      <CartList quantity={quantity}/>
+      <CartList quantity={quantity} cartItems={cartItems}/>
+      {total > 0 && <div className='cart-separator'></div>}
+      {total > 0 && <CartOrder total={total}/>}
+      {total > 0 && <CartConfirmButton/>}
     </div>
   )
 }
