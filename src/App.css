@@ -468,3 +468,189 @@
     font-weight: 600;
     line-height: normal;
 }
+
+
+.confirmation-modal {
+    display: flex;
+    padding: var(--spacing-500, 2.5rem) var(--spacing-300, 1.5rem) var(--spacing-300, 1.5rem) var(--spacing-300, 1.5rem);
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--spacing-400, 2rem);
+    flex: 1 0 0;
+
+    border-radius: 0.75rem 0.75rem 0 0;
+    background: var(--color-white, #FFF);
+}
+
+.confirmation-modal img {
+    width: 3rem;
+    height: 3rem;
+}
+
+.confirmation-modal-text-content {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--spacing-100, 0.5rem);
+    align-self: stretch;
+}
+
+.confirmation-modal-text-content h1 {
+    align-self: stretch;
+    color: var(--color-rose-900, #260F08);
+
+    /* text-preset-1 */
+    font-family: "Red Hat Text";
+    font-size: var(--font-size-text-preset-1, 2.5rem);
+    font-style: normal;
+    font-weight: 700;
+    line-height: 120%;
+    /* 3rem */
+}
+
+.confirmation-modal-text-content p {
+    align-self: stretch;
+    color: var(--color-rose-500, #87635A);
+
+    font-family: "Red Hat Text";
+    font-size: 1rem;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+
+.start-new-order-btn {
+    border: 0;
+    display: flex;
+    padding: var(--spacing-200, 1rem) var(--spacing-300, 1.5rem);
+    justify-content: center;
+    align-items: center;
+    align-self: stretch;
+    cursor: pointer;
+}
+
+.start-new-order-btn span {
+    display: block;
+    color: var(--color-white, #FFF);
+
+    /* text-preset-3 */
+    font-family: "Red Hat Text";
+    font-size: var(--spacing-200, 1rem);
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+}
+
+.confirmed-items {
+    display: flex;
+    padding: var(--spacing-300, 1.5rem);
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--spacing-300, 1.5rem);
+    align-self: stretch;
+    border-radius: 0.5rem;
+    background: var(--color-rose-50, #FCF8F6);
+}
+
+.confirmed-items-list {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--spacing-200, 1rem);
+    align-self: stretch;
+}
+
+.confirmed-items-list-item {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-100, 0.5rem);
+    align-self: stretch;
+}
+
+.confirmed-items-list-item-info {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-200, 1rem);
+    flex: 1 0 0;
+}
+
+.confirmed-items-list-item-info img {
+    width: 3rem;
+    height: 3rem;
+}
+
+.confirmed-items-list-item-info-detail {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--spacing-100, 0.5rem);
+    flex: 1 0 0;
+}
+
+.confirmed-items-list-item-info-detail h1 {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 1;
+    align-self: stretch;
+    overflow: hidden;
+    color: var(--color-rose-900, #260F08);
+    text-overflow: ellipsis;
+
+    /* text-preset-4-bold */
+    font-family: "Red Hat Text";
+    font-size: var(--font-size-text-preset-4, 0.875rem);
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+}
+
+.confirmed-items-list-item-info-detail .quantity {
+    color: var(--color-red, #C73B0F);
+
+    /* text-preset-4-bold */
+    font-family: "Red Hat Text";
+    font-size: var(--font-size-text-preset-4, 0.875rem);
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+}
+
+.confirmed-items-list-item-info-detail .unit-price {
+    color: var(--color-rose-500, #87635A);
+
+    /* text-preset-4 */
+    font-family: "Red Hat Text";
+    font-size: var(--font-size-text-preset-4, 0.875rem);
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+
+.confirm-order-total {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    align-self: stretch;
+}
+
+.confirm-order-total h1 {
+    color: var(--color-rose-900, #260F08);
+
+    /* text-preset-4 */
+    font-family: "Red Hat Text";
+    font-size: var(--font-size-text-preset-4, 0.875rem);
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+
+.confirm-order-total p {
+    color: var(--color-rose-900, #260F08);
+
+    /* text-preset-2 */
+    font-family: "Red Hat Text";
+    font-size: var(--font-size-text-preset-2, 1.5rem);
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+}
