@@ -1,0 +1,442 @@
+.main-content {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--spacing-400, 2rem);
+
+    @media (width < 1440px) {
+        flex-direction: column;
+    }
+}
+
+.product-container {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-400, 2rem);
+    align-items: start;
+    width: min(50.5rem, 89.5svw);
+
+    @media (width < 768px) {
+        width: 87.2svw;
+    }
+}
+
+.product-container h1 {
+    color: var(--color-rose-900, #260F08);
+
+    /* text-preset-1 */
+    font-family: "Red Hat Text";
+    font-size: var(--font-size-text-preset-1, 2.5rem);
+    font-style: normal;
+    font-weight: 700;
+    line-height: 120%;
+    /* 3rem */
+}
+
+.product-list {
+    display: grid;
+    width: 100%;
+    grid-template-columns: repeat(auto-fit, minmax(15.67rem, 1fr));
+    column-gap: var(--spacing-300, 1.5rem);
+    row-gap: var(--spacing-400, 2rem);
+
+    @media (768px <=width < 1440px) {
+        grid-template-columns: repeat(auto-fit, minmax(13.25rem, 1fr));
+    }
+}
+
+.product-card {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--spacing-200, 1rem);
+    align-self: stretch;
+
+    @media (width >=1440px) {
+        width: min(100%, 15.67rem);
+    }
+
+    @media (768px <=width < 1440px) {
+        width: min(100%, 13.33rem);
+    }
+}
+
+.item-display-content {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    align-self: stretch;
+}
+
+.item-display-content img {
+    width: 100%;
+    height: 13.25rem;
+    border-radius: var(--spacing-100, 0.5rem);
+
+    @media (width >=1440px) {
+        height: 15rem;
+    }
+}
+
+.item-display-content.activate img {
+    border: 2px solid var(--color-red, #C73B0F);
+}
+
+.add-to-cart-btn {
+    display: flex;
+    padding: var(--spacing-150, 0.75rem);
+    justify-content: center;
+    align-items: center;
+    gap: var(--spacing-100, 0.5rem);
+    border-radius: 62.4375rem;
+    border: 1px solid var(--color-rose-400, #AD8A85);
+    background: var(--color-white, #FFF);
+    margin-top: -1.38rem;
+    z-index: 2;
+}
+
+.add-to-cart-btn img {
+    width: 1.25rem;
+    height: 1.25rem;
+    flex-shrink: 0;
+}
+
+.add-to-cart-btn span {
+    color: var(--color-rose-900, #260F08);
+
+    /* text-preset-4-bold */
+    font-family: "Red Hat Text";
+    font-size: var(--font-size-text-preset-4, 0.875rem);
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+}
+
+.add-to-cart-activated {
+    display: flex;
+    width: 10rem;
+    max-width: 10rem;
+    padding: var(--spacing-150, 0.75rem);
+    justify-content: space-between;
+    align-items: center;
+    border-radius: 62.4375rem;
+    background: var(--color-red, #C73B0F);
+    margin-top: -1.38rem;
+    z-index: 2;
+}
+
+.decrease-quantity-btn {
+    all: unset;
+    border: none;
+    background: none;
+    cursor: pointer;
+}
+
+.increase-quantity-btn {
+    all: unset;
+    border: none;
+    background: none;
+    cursor: pointer;
+}
+
+.decrease-quantity-btn-img,
+.increase-quantity-btn-img {
+    width: 1.25rem;
+    height: 1.25rem;
+    flex-shrink: 0;
+}
+
+.add-to-cart-activated span {
+    display: block;
+    color: var(--color-white, #FFF);
+
+    /* text-preset-4-bold */
+    font-family: "Red Hat Text";
+    font-size: var(--font-size-text-preset-4, 0.875rem);
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+}
+
+.item-info {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--spacing-50, 0.25rem);
+    align-self: stretch;
+}
+
+.item-info h1 {
+    color: var(--color-rose-500, #87635A);
+
+    /* text-preset-4 */
+    font-family: "Red Hat Text";
+    font-size: var(--font-size-text-preset-4, 0.875rem);
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+
+.item-info .description {
+    color: var(--color-rose-900, #260F08);
+
+    /* text-preset-3 */
+    font-family: "Red Hat Text";
+    font-size: var(--spacing-200, 1rem);
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+}
+
+.item-info .price {
+    color: var(--color-red, #C73B0F);
+
+    /* text-preset-3 */
+    font-family: "Red Hat Text";
+    font-size: var(--spacing-200, 1rem);
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+}
+
+.cart-container {
+    display: flex;
+    padding: var(--spacing-300, 1.5rem);
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--spacing-300, 1.5rem);
+    align-self: stretch;
+
+    border-radius: var(--spacing-150, 0.75rem);
+    background: var(--color-white, #FFF);
+}
+
+.cart {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--spacing-300, 1.5rem);
+    align-self: stretch;
+
+    @media (width >=1440px) {
+        width: min(24rem, 27svw);
+        align-self: auto;
+    }
+}
+
+.cart h1 {
+    color: var(--color-red, #C73B0F);
+
+    /* text-preset-2 */
+    font-family: "Red Hat Text";
+    font-size: var(--font-size-text-preset-2, 1.5rem);
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+}
+
+.cart-list {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--spacing-200, 1rem);
+    align-self: stretch;
+}
+
+.cart-list-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    align-self: stretch;
+}
+
+.cart-list-item .info {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--spacing-100, 0.5rem);
+}
+
+.cart-list-item .info h1 {
+    color: var(--color-rose-900, #260F08);
+
+    /* text-preset-4-bold */
+    font-family: "Red Hat Text";
+    font-size: var(--font-size-text-preset-4, 0.875rem);
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+}
+
+.cart-list-item .info .detail {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--spacing-100, 0.5rem);
+}
+
+.detail .quantity {
+    margin-right: 1rem;
+    color: var(--color-red, #C73B0F);
+
+    /* text-preset-4-bold */
+    font-family: "Red Hat Text";
+    font-size: var(--font-size-text-preset-4, 0.875rem);
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+}
+
+.detail .unit-price {
+    color: var(--color-rose-500, #87635A);
+
+    /* text-preset-4 */
+    font-family: "Red Hat Text";
+    font-size: var(--font-size-text-preset-4, 0.875rem);
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+
+.detail .total-price {
+    color: var(--color-rose-500, #87635A);
+
+    /* text-preset-4-bold */
+    font-family: "Red Hat Text";
+    font-size: var(--font-size-text-preset-4, 0.875rem);
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+}
+
+.remove-item-btn {
+    all: unset;
+    cursor: pointer;
+}
+
+.remove-item-btn img {
+    width: 1.25rem;
+    height: 1.25rem;
+}
+
+.cart-separator {
+    display: block;
+    height: 0.0625rem;
+    align-self: stretch;
+    background: var(--color-rose-100, #F5EEEC);
+}
+
+.cart-total-order {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    align-self: stretch;
+}
+
+.cart-total-order h1 {
+    color: var(--color-rose-900, #260F08);
+
+    /* text-preset-4 */
+    font-family: "Red Hat Text";
+    font-size: var(--font-size-text-preset-4, 0.875rem);
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+
+.cart-total-order p {
+    color: var(--color-rose-900, #260F08);
+
+    /* text-preset-2 */
+    font-family: "Red Hat Text";
+    font-size: var(--font-size-text-preset-2, 1.5rem);
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+}
+
+.carbon-info {
+    display: flex;
+    padding: var(--spacing-200, 1rem);
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: var(--spacing-300, 1.5rem);
+    align-self: stretch;
+    border-radius: var(--spacing-100, 0.5rem);
+    background: var(--color-rose-50, #FCF8F6);
+}
+
+.carbon-info img {
+    width: 1.25rem;
+    height: 1.25rem;
+}
+
+.carbon-info p {
+    color: var(--color-rose-900, #260F08);
+
+    /* text-preset-4 */
+    font-family: "Red Hat Text";
+    font-size: var(--font-size-text-preset-4, 0.875rem);
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+
+.carbon-info span {
+    color: var(--color-rose-900, #260F08);
+
+    /* text-preset-4-bold */
+    font-family: "Red Hat Text";
+    font-size: var(--font-size-text-preset-4, 0.875rem);
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+}
+
+.confirm-btn {
+    display: flex;
+    padding: var(--spacing-200, 1rem) 0;
+    justify-content: center;
+    align-items: center;
+    align-self: stretch;
+}
+
+.confirm-btn span {
+    display: block;
+    color: var(--color-white, #FFF);
+
+    /* text-preset-3 */
+    font-family: "Red Hat Text";
+    font-size: var(--spacing-200, 1rem);
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+}
+
+.cart-empty-placeholder {
+    display: flex;
+    padding: var(--spacing-200, 1rem) 0;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: var(--spacing-200, 1rem);
+    align-self: stretch;
+}
+
+.cart-empty-placeholder img {
+    width: 8rem;
+    height: 8rem;
+}
+
+.cart-empty-placeholder p {
+    color: var(--color-rose-500, #87635A);
+    text-align: center;
+
+    /* text-preset-4-bold */
+    font-family: "Red Hat Text";
+    font-size: var(--font-size-text-preset-4, 0.875rem);
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+}
