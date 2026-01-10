@@ -53,8 +53,10 @@ function CartProvider({ children }) {
     }))
   }, []);
 
+  const cartItems = products.filter((product) => product.quantity > 0);
+
   return (
-    <CartContext.Provider value={{ products, handleQuantityChange }}>
+    <CartContext.Provider value={{ products, handleQuantityChange, cartItems }}>
       {children}
     </CartContext.Provider>
   );
@@ -162,9 +164,32 @@ function ProductContainer() {
 
 function CartListItem() {}
 
-function CartList(){}
+function CartList({ quantity }){
+  if (quantity === 0) {
+    return (
+    <div className='cart-empty-placeholder'>
+      <img src="./assets/images/illustration-empty-cart.svg" alt="" />
+      <p>Your added items will appear here</p>
+    </div>
+    )
+  }
+  return (
+    <div className='cart-list'>
+      
+    </div>
+  )
+}
 
-function Cart(){}
+function Cart(){
+  const {cartItems} = useCart();
+  const quantity = cartItems.reduce((total, item) => total + item.quantity, 0);
+  return (
+    <div className='cart'>
+      <h1>your cart ({quantity})</h1>
+      <CartList quantity={quantity}/>
+    </div>
+  )
+}
 
 function CartContainer() {
   return (
@@ -180,7 +205,10 @@ function App() {
   return (
     <LayoutContext.Provider value={layout}>
       <CartProvider>
-        <ProductContainer/>
+        <main className='main-content'>
+          <ProductContainer/>
+          <CartContainer/>
+        </main>
       </CartProvider>
     </LayoutContext.Provider>
   )

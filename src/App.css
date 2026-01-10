@@ -3,6 +3,18 @@
     align-items: flex-start;
     gap: var(--spacing-400, 2rem);
 
+    @media (width >=1440px) {
+        padding: var(--spacing-1100, 5.5rem) var(--spacing-500, 2.5rem);
+    }
+
+    @media (768px < width < 1440px) {
+        padding: var(--spacing-500, 2.5rem);
+    }
+
+    @media (width < 768px) {
+        padding: var(--spacing-300, 1.5rem);
+    }
+
     @media (width < 1440px) {
         flex-direction: column;
     }
@@ -14,6 +26,10 @@
     gap: var(--spacing-400, 2rem);
     align-items: start;
     width: min(50.5rem, 89.5svw);
+
+    @media (768px < width < 1440px) {
+        width: 43rem;
+    }
 
     @media (width < 768px) {
         width: 87.2svw;
@@ -39,7 +55,7 @@
     column-gap: var(--spacing-300, 1.5rem);
     row-gap: var(--spacing-400, 2rem);
 
-    @media (768px <=width < 1440px) {
+    @media (768px < width < 1440px) {
         grid-template-columns: repeat(auto-fit, minmax(13.25rem, 1fr));
     }
 }
@@ -56,7 +72,7 @@
         width: min(100%, 15.67rem);
     }
 
-    @media (768px <=width < 1440px) {
+    @media (768px < width < 1440px) {
         width: min(100%, 13.33rem);
     }
 }
@@ -207,9 +223,17 @@
     align-items: flex-start;
     gap: var(--spacing-300, 1.5rem);
     align-self: stretch;
+    max-height: 90svh;
+    overflow-x: hidden;
+    overflow-y: auto;
+    align-self: start;
 
     border-radius: var(--spacing-150, 0.75rem);
     background: var(--color-white, #FFF);
+
+    @media (width < 1440px) {
+        align-self: stretch;
+    }
 }
 
 .cart {
