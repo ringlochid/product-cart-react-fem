@@ -382,7 +382,6 @@
 .carbon-info {
     display: flex;
     padding: var(--spacing-200, 1rem);
-    flex-direction: column;
     justify-content: center;
     align-items: center;
     gap: var(--spacing-300, 1.5rem);

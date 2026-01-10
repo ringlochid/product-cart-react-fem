@@ -231,6 +231,15 @@ function CartConfirmButton(){
   )
 }
 
+function CarbonInfo() {
+  return (
+    <div className='carbon-info'>
+      <img src='./assets/images/icon-carbon-neutral.svg' alt=""/>
+      <p>This is a <span>carbon-neutral</span> delivery</p>
+    </div>
+  )
+}
+
 function Cart(){
   const {cartItems} = useCart();
   const quantity = cartItems.reduce((total, item) => total + item.quantity, 0);
@@ -241,6 +250,7 @@ function Cart(){
       <CartList quantity={quantity} cartItems={cartItems}/>
       {total > 0 && <div className='cart-separator'></div>}
       {total > 0 && <CartOrder total={total}/>}
+      {total > 0 && <CarbonInfo/>}
       {total > 0 && <CartConfirmButton/>}
     </div>
   )
