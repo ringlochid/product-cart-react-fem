@@ -2,6 +2,7 @@ import './App.css'
 import { useState, useContext, createContext, useEffect, memo, useCallback, Fragment } from 'react'
 import getProductList from './api/productAPI';
 
+const BASE_URL = import.meta.env.BASE_URL;
 
 const LayoutContext = createContext('mobile');
 const CartContext = createContext(null);
@@ -134,7 +135,7 @@ function AddToCartButton({ setActivated, isActivated, quantity, onQuantityChange
   }
   return (
     <button className={'add-to-cart-btn'} onClick={handleClickMainButton}>
-      <img src="./assets/images/icon-add-to-cart.svg" alt="" />
+      <img src={`${BASE_URL}assets/images/icon-add-to-cart.svg`} alt="" />
       <span>Add to Cart</span>
     </button>
   )
@@ -149,7 +150,7 @@ const ProductCard = memo(function ProductCard({ product, onQuantityChange }) {
   return (
     <div className='product-card'>
       <div className={isActivated ? 'item-display-content activate' : 'item-display-content'}>
-        <img src={product.image[layout]} alt={product.name + " " + layout}/>
+        <img src={`${BASE_URL}${product.image[layout].replace('./', '')}`} alt={product.name + " " + layout}/>
         <AddToCartButton 
           isActivated={isActivated} 
           setActivated={setActivated} 
@@ -217,7 +218,7 @@ function CartList({ quantity, cartItems }){
   if (quantity === 0) {
     return (
     <div className='cart-empty-placeholder'>
-      <img src="./assets/images/illustration-empty-cart.svg" alt="" />
+      <img src={`${BASE_URL}assets/images/illustration-empty-cart.svg`} alt="" />
       <p>Your added items will appear here</p>
     </div>
     )
@@ -255,7 +256,7 @@ function CartConfirmButton(){
 function CarbonInfo() {
   return (
     <div className='carbon-info'>
-      <img src='./assets/images/icon-carbon-neutral.svg' alt=""/>
+      <img src={`${BASE_URL}assets/images/icon-carbon-neutral.svg`} alt=""/>
       <p>This is a <span>carbon-neutral</span> delivery</p>
     </div>
   )
@@ -287,7 +288,7 @@ function ConfirmedItemsList({ cartItems }) {
           <Fragment key={item.name}>
             <div className='confirmed-items-list-item'>
               <div className='confirmed-items-list-item-info'>
-                <img src={item.image.thumbnail} alt={item.name} />
+                <img src={`${BASE_URL}${item.image.thumbnail.replace('./', '')}`} alt={item.name} />
                 <div className='confirmed-items-list-item-info-detail'>
                   <h1>{item.name}</h1>
                   <div className='detail'>
@@ -319,7 +320,7 @@ function ConfirmationModal() {
   return (
     <div className='confirmation-modal-overlay'>
       <div className='confirmation-modal'>
-        <img src='./assets/images/icon-order-confirmed.svg' alt="" />
+        <img src={`${BASE_URL}assets/images/icon-order-confirmed.svg`} alt="" />
         <div className='confirmation-modal-text-content'>
           <h1>Order Confirmed</h1>
           <p>We hope you enjoy your food!</p>
