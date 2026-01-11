@@ -470,16 +470,78 @@
 }
 
 
+/* Modal Overlay */
+.confirmation-modal-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    z-index: 100;
+    animation: fadeIn 0.3s ease-out;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes slideUp {
+    from {
+        transform: translateY(100%);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+@keyframes scaleIn {
+    from {
+        transform: scale(0.9);
+        opacity: 0;
+    }
+
+    to {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
 .confirmation-modal {
     display: flex;
     padding: var(--spacing-500, 2.5rem) var(--spacing-300, 1.5rem) var(--spacing-300, 1.5rem) var(--spacing-300, 1.5rem);
     flex-direction: column;
     align-items: flex-start;
     gap: var(--spacing-400, 2rem);
-    flex: 1 0 0;
+    width: 100%;
+    max-height: 90vh;
+    overflow-y: auto;
 
     border-radius: 0.75rem 0.75rem 0 0;
     background: var(--color-white, #FFF);
+    animation: slideUp 0.3s ease-out;
+}
+
+@media (width >=768px) {
+    .confirmation-modal-overlay {
+        align-items: center;
+    }
+
+    .confirmation-modal {
+        width: min(37rem, 90vw);
+        max-height: 85vh;
+        border-radius: 0.75rem;
+        animation: scaleIn 0.3s ease-out;
+    }
 }
 
 .confirmation-modal img {
@@ -527,6 +589,8 @@
     align-items: center;
     align-self: stretch;
     cursor: pointer;
+    border-radius: 62.4375rem;
+    background: var(--color-red, #C73B0F);
 }
 
 .start-new-order-btn span {
@@ -653,4 +717,25 @@
     font-style: normal;
     font-weight: 700;
     line-height: normal;
+}
+
+.confirmed-items-list-item .item-total {
+    color: var(--color-rose-900, #260F08);
+
+    /* text-preset-3 */
+    font-family: "Red Hat Text";
+    font-size: var(--spacing-200, 1rem);
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+}
+
+.confirmed-items-list-item-info-detail .detail {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-100, 0.5rem);
+}
+
+.confirmed-items-list-item-info img {
+    border-radius: var(--spacing-50, 0.25rem);
 }

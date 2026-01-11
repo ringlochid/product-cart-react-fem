@@ -30,6 +30,7 @@ function useLayout() {
 
 function CartProvider({ children }) {
   const [products, setProducts] = useState([]);
+  const [isModalOpen, setIsModalOpen] = useState(false);
   
   useEffect(() => {
     getProductList()
@@ -53,10 +54,29 @@ function CartProvider({ children }) {
     }))
   }, []);
 
+  const resetCart = useCallback(() => {
+    setProducts(prevProducts => prevProducts.map(product => ({
+      ...product,
+      quantity: 0
+    })));
+    setIsModalOpen(false);
+  }, []);
+
+  const openModal = useCallback(() => setIsModalOpen(true), []);
+  const closeModal = useCallback(() => setIsModalOpen(false), []);
+
   const cartItems = products.filter((product) => product.quantity > 0);
 
   return (
-    <CartContext.Provider value={{ products, handleQuantityChange, cartItems }}>
+    <CartContext.Provider value={{ 
+      products, 
+      handleQuantityChange, 
+      cartItems, 
+      isModalOpen, 
+      openModal, 
+      closeModal, 
+      resetCart 
+    }}>
       {children}
     </CartContext.Provider>
   );
@@ -224,8 +244,9 @@ function CartOrder({total}){
 }
 
 function CartConfirmButton(){
+  const { openModal } = useCart();
   return (
-    <button className='confirm-btn'>
+    <button className='confirm-btn' onClick={openModal}>
       <span>Confirm Order</span>
     </button>
   )
@@ -256,6 +277,62 @@ function Cart(){
   )
 }
 
+function ConfirmedItemsList({ cartItems }) {
+  const total = cartItems.reduce((acc, item) => acc + item.quantity * item.price, 0);
+  
+  return (
+    <div className='confirmed-items'>
+      <div className='confirmed-items-list'>
+        {cartItems.map((item, idx, array) => (
+          <Fragment key={item.name}>
+            <div className='confirmed-items-list-item'>
+              <div className='confirmed-items-list-item-info'>
+                <img src={item.image.thumbnail} alt={item.name} />
+                <div className='confirmed-items-list-item-info-detail'>
+                  <h1>{item.name}</h1>
+                  <div className='detail'>
+                    <span className='quantity'>{item.quantity}x</span>
+                    <span className='unit-price'>@ ${item.price.toFixed(2)}</span>
+                  </div>
+                </div>
+              </div>
+              <p className='item-total'>${(item.quantity * item.price).toFixed(2)}</p>
+            </div>
+            {idx < array.length - 1 && <div className='cart-separator'/>}
+          </Fragment>
+        ))}
+      </div>
+      <div className='cart-separator'/>
+      <div className='confirm-order-total'>
+        <h1>Order Total</h1>
+        <p>${total.toFixed(2)}</p>
+      </div>
+    </div>
+  );
+}
+
+function ConfirmationModal() {
+  const { cartItems, resetCart, isModalOpen } = useCart();
+  
+  if (!isModalOpen) return null;
+  
+  return (
+    <div className='confirmation-modal-overlay'>
+      <div className='confirmation-modal'>
+        <img src='./assets/images/icon-order-confirmed.svg' alt="" />
+        <div className='confirmation-modal-text-content'>
+          <h1>Order Confirmed</h1>
+          <p>We hope you enjoy your food!</p>
+        </div>
+        <ConfirmedItemsList cartItems={cartItems} />
+        <button className='start-new-order-btn' onClick={resetCart}>
+          <span>Start New Order</span>
+        </button>
+      </div>
+    </div>
+  );
+}
+
 function CartContainer() {
   return (
     <div className='cart-container'>
@@ -274,6 +351,7 @@ function App() {
           <ProductContainer/>
           <CartContainer/>
         </main>
+        <ConfirmationModal/>
       </CartProvider>
     </LayoutContext.Provider>
   )
